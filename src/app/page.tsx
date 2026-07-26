@@ -44,7 +44,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="about">
+      <section id="about" className="-mt-8">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
             <h2 className="text-lg font-normal text-muted-foreground"># About</h2>
@@ -189,22 +189,22 @@ export default function Page() {
         </BlurFade>
       </section>
 
-      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm text-muted-foreground font-mono">
-        <div className="flex flex-col gap-1 text-left">
+      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 font-mono">
+        <div className="flex flex-col gap-1 text-left text-sm text-muted-foreground">
           <p>
-            Designed & Developed by{" "}
+            Designed &amp; Developed by{" "}
             <span className="font-semibold text-foreground">Sandeep</span>
           </p>
           <p>© 2026 All rights reserved.</p>
         </div>
-        <div className="flex flex-col gap-1 text-left sm:text-right">
-          <p>
+        <div className="flex flex-col gap-2 text-left sm:text-right">
+          <p className="text-xl sm:text-2xl text-muted-foreground">
             Visitors{" "}
-            <span className="font-semibold text-foreground">#32</span>
+            <span className="font-bold text-foreground">#32</span>
           </p>
-          <p>
+          <p className="text-xl sm:text-2xl text-muted-foreground">
             Hyderabad, India{" "}
-            <span className="font-semibold text-foreground">
+            <span className="font-bold text-foreground">
               <FooterClock />
             </span>
           </p>
