@@ -27,6 +27,5 @@ export function getAssetPath(path: string | undefined) {
     return path;
   }
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
-  if (cleanPath.startsWith("/sandeepmegharaj")) return cleanPath;
-  return `/sandeepmegharaj${cleanPath}`;
+  return cleanPath;
 }

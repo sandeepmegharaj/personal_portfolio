@@ -6,8 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "/sandeepmegharaj",
-  assetPrefix: "/sandeepmegharaj/",
   reactStrictMode: true,
   trailingSlash: true,
 };
