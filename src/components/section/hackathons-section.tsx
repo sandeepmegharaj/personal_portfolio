@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { DATA } from "@/data/resume";
 import { Timeline, TimelineItem, TimelineConnectItem } from "@/components/timeline";
+import { getAssetPath } from "@/lib/utils";
 
 export default function HackathonsSection() {
   return (
@@ -17,7 +18,7 @@ export default function HackathonsSection() {
               <TimelineConnectItem className="flex items-start justify-center">
                 {hackathon.image ? (
                   <img
-                    src={hackathon.image}
+                    src={getAssetPath(hackathon.image)}
                     alt={hackathon.title}
                     className="size-10 bg-card z-10 shrink-0 overflow-hidden p-1 border rounded-full shadow ring-2 ring-border object-contain flex-none"
                   />

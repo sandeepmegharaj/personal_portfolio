@@ -15,3 +15,19 @@ export function formatDate(date: string | Date) {
     timeZone: "UTC",
   });
 }
+
+export function getAssetPath(path: string | undefined) {
+  if (!path) return "";
+  if (
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("mailto:") ||
+    path.startsWith("tel:")
+  ) {
+    return path;
+  }
+  const isProduction = process.env.NODE_ENV === "production";
+  const prefix = isProduction ? "/personal_portfolio" : "";
+  const cleanPath = path.startsWith("/") ? path : `/${path}`;
+  return `${prefix}${cleanPath}`;
+}

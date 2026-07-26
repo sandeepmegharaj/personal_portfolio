@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import { DATA } from "@/data/resume";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 
 function LogoImage({ src, alt }: { src: string; alt: string }) {
   const [imageError, setImageError] = useState(false);
@@ -22,7 +22,7 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 
   return (
     <img
-      src={src}
+      src={getAssetPath(src)}
       alt={alt}
       className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
       onError={() => setImageError(true)}

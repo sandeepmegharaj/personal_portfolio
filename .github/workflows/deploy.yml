@@ -1,23 +1,30 @@
-name: Deploy to GitHub Pages
+name: Deploy Next.js site to Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -27,32 +34,22 @@ jobs:
         with:
           version: 9
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Cache pnpm modules
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build for GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Next.js
         run: pnpm run build
         env:
           GITHUB_ACTIONS: "true"
 
-      - name: Add .nojekyll to prevent Jekyll processing
-        run: touch out/.nojekyll
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: out
-          branch: gh-pages
-          clean: true
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -2,7 +2,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { cn, getAssetPath } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -63,7 +63,7 @@ function ProjectImage({ src, alt }: { src: string; alt: string }) {
 
   return (
     <img
-      src={src}
+      src={getAssetPath(src)}
       alt={alt}
       className="w-full h-48 object-cover"
       onError={() => setImageError(true)}
