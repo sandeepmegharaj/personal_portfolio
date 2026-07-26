@@ -200,7 +200,7 @@ export default function Page() {
         <div className="flex flex-col gap-1 text-left sm:text-right text-sm text-muted-foreground font-sans">
           <p className="whitespace-nowrap">
             Visitors{" "}
-            <span className="font-semibold text-foreground">#32</span>
+            <span className="font-semibold text-foreground">#86</span>
           </p>
           <p className="whitespace-nowrap">
             Hyderabad, India{" "}
