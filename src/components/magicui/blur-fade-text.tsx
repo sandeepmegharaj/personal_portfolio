@@ -21,15 +21,15 @@ const BlurFadeText = ({
   text,
   className,
   variant,
-  duration = 0.4,
-  characterDelay = 0.03,
+  duration = 0.25,
+  characterDelay = 0.02,
   delay = 0,
-  yOffset = 8,
+  yOffset = 4,
   animateByCharacter = false,
 }: BlurFadeTextProps) => {
   const defaultVariants: Variants = {
-    hidden: { y: -yOffset, opacity: 0, filter: "blur(8px)" },
-    visible: { y: 0, opacity: 1, filter: "blur(0px)" },
+    hidden: { y: -yOffset, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
   };
   const combinedVariants = variant || defaultVariants;
   const characters = useMemo(() => Array.from(text), [text]);
@@ -39,8 +39,8 @@ const BlurFadeText = ({
       <div className="flex">
         {characters.map((char, i) => {
           const charVariants: Variants = {
-            hidden: { y: -yOffset, opacity: 0, filter: "blur(8px)" },
-            visible: { y: 0, opacity: 1, filter: "blur(0px)" },
+            hidden: { y: -yOffset, opacity: 0 },
+            visible: { y: 0, opacity: 1 },
           };
           return (
             <motion.span
@@ -50,8 +50,8 @@ const BlurFadeText = ({
               variants={charVariants}
               transition={{
                 duration,
-                delay: delay + i * characterDelay,
-                ease: "easeOut",
+                delay: Math.min(delay + i * characterDelay, 0.2),
+                ease: [0.21, 0.47, 0.32, 0.98],
               }}
               className={cn("inline-block", className)}
               style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
@@ -72,8 +72,8 @@ const BlurFadeText = ({
         variants={combinedVariants}
         transition={{
           duration,
-          delay,
-          ease: "easeOut",
+          delay: Math.min(delay, 0.1),
+          ease: [0.21, 0.47, 0.32, 0.98],
         }}
         className={cn("inline-block", className)}
       >

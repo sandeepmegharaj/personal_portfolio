@@ -14,7 +14,7 @@ import FooterClock from "@/components/footer-clock";
 import { Icons } from "@/components/icons";
 import { getAssetPath } from "@/lib/utils";
 
-const BLUR_FADE_DELAY = 0.04;
+const BLUR_FADE_DELAY = 0.01;
 
 export default function Page() {
   return (
