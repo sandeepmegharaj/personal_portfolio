@@ -189,22 +189,22 @@ export default function Page() {
         </BlurFade>
       </section>
 
-      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 font-mono">
-        <div className="flex flex-col gap-1 text-left text-sm text-muted-foreground">
+      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="flex flex-col gap-1 text-left text-sm text-muted-foreground font-sans">
           <p>
             Designed &amp; Developed by{" "}
             <span className="font-semibold text-foreground">Sandeep</span>
           </p>
           <p>© 2026 All rights reserved.</p>
         </div>
-        <div className="flex flex-col gap-2 text-left sm:text-right">
-          <p className="text-xl sm:text-2xl text-muted-foreground">
+        <div className="flex flex-col gap-1 text-left sm:text-right text-sm text-muted-foreground font-sans">
+          <p className="whitespace-nowrap">
             Visitors{" "}
-            <span className="font-bold text-foreground">#32</span>
+            <span className="font-semibold text-foreground">#32</span>
           </p>
-          <p className="text-xl sm:text-2xl text-muted-foreground">
+          <p className="whitespace-nowrap">
             Hyderabad, India{" "}
-            <span className="font-bold text-foreground">
+            <span className="font-semibold text-foreground">
               <FooterClock />
             </span>
           </p>
