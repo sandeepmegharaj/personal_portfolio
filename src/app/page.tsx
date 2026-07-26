@@ -148,7 +148,7 @@ export default function Page() {
       <section id="ask-ai">
         <BlurFade delay={BLUR_FADE_DELAY * 14}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-border/40 pt-6">
-            <h2 className="text-lg font-normal text-muted-foreground">
+            <h2 className="text-sm sm:text-base font-normal text-muted-foreground">
               # ask why Sandeep might matter? on any platform
             </h2>
             <div className="flex items-center gap-2">
@@ -189,15 +189,24 @@ export default function Page() {
         </BlurFade>
       </section>
 
-      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-muted-foreground font-mono">
+      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-sm text-muted-foreground font-mono">
         <div className="flex flex-col gap-1 text-left">
-          <p>Designed & Developed by Sandeep</p>
+          <p>
+            Designed & Developed by{" "}
+            <span className="font-semibold text-foreground">Sandeep</span>
+          </p>
           <p>© 2026 All rights reserved.</p>
         </div>
         <div className="flex flex-col gap-1 text-left sm:text-right">
-          <p>Visitors #32</p>
           <p>
-            Hyderabad, India <FooterClock />
+            Visitors{" "}
+            <span className="font-semibold text-foreground">#32</span>
+          </p>
+          <p>
+            Hyderabad, India{" "}
+            <span className="font-semibold text-foreground">
+              <FooterClock />
+            </span>
           </p>
         </div>
       </footer>
