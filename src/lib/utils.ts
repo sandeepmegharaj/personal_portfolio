@@ -26,8 +26,6 @@ export function getAssetPath(path: string | undefined) {
   ) {
     return path;
   }
-  const isProduction = process.env.NODE_ENV === "production";
-  const prefix = isProduction ? "/personal_portfolio" : "";
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
-  return `${prefix}${cleanPath}`;
+  return cleanPath;
 }
