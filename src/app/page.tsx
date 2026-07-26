@@ -10,6 +10,8 @@ import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
 import { ArrowUpRight } from "lucide-react";
+import FooterClock from "@/components/footer-clock";
+import { Icons } from "@/components/icons";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -33,7 +35,7 @@ export default function Page() {
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY} className="order-1 md:order-2">
-              <Avatar className="size-24 md:size-32 border rounded-full shadow-lg ring-4 ring-muted">
+              <Avatar className="size-28 md:size-36 border rounded-full shadow-lg ring-4 ring-muted">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -44,7 +46,7 @@ export default function Page() {
       <section id="about">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 3}>
-            <h2 className="text-xl font-bold">About</h2>
+            <h2 className="text-lg font-normal text-muted-foreground"># About</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 4}>
             <div className="prose max-w-full text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
@@ -58,7 +60,7 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-lg font-normal text-muted-foreground"># Work Experience</h2>
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 6}>
             <WorkSection />
@@ -68,7 +70,7 @@ export default function Page() {
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-6">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
+            <h2 className="text-lg font-normal text-muted-foreground"># Education</h2>
           </BlurFade>
           <div className="flex flex-col gap-8">
             {DATA.education.map((education, index) => (
@@ -116,14 +118,16 @@ export default function Page() {
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-4">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
+            <h2 className="text-lg font-normal text-muted-foreground"># Stack</h2>
           </BlurFade>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-3">
             {DATA.skills.map((skill, id) => (
               <BlurFade key={skill.name} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <div className="border bg-background border-border ring-2 ring-border/20 rounded-xl h-8 w-fit px-4 flex items-center gap-2">
-                  {skill.icon && <skill.icon className="size-4 rounded overflow-hidden object-contain" />}
-                  <span className="text-foreground text-sm font-medium">{skill.name}</span>
+                <div
+                  className="border bg-background border-border ring-2 ring-border/5 rounded-xl h-11 w-11 flex items-center justify-center hover:scale-105 hover:bg-muted/40 transition-all duration-200"
+                  title={skill.name}
+                >
+                  {skill.icon && <skill.icon className="size-6 text-foreground fill-current" />}
                 </div>
               </BlurFade>
             ))}
@@ -140,11 +144,62 @@ export default function Page() {
           <HackathonsSection />
         </BlurFade>
       </section>
-      <section id="contact">
-        <BlurFade delay={BLUR_FADE_DELAY * 16}>
-          <ContactSection />
+      <section id="ask-ai">
+        <BlurFade delay={BLUR_FADE_DELAY * 14}>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-border/40 pt-6">
+            <h2 className="text-lg font-normal text-muted-foreground">
+              # ask why Sandeep might matter? on any platform
+            </h2>
+            <div className="flex items-center gap-2">
+              <Link
+                href="https://chatgpt.com/s/t_6a6608d6dea08191a57693015bf149a3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border bg-background border-border ring-2 ring-border/5 rounded-xl h-10 w-10 flex items-center justify-center hover:scale-105 hover:bg-muted/40 transition-all duration-200"
+                title="Ask ChatGPT"
+              >
+                <Icons.openai className="size-5 text-foreground fill-current" />
+              </Link>
+              <Link
+                href="https://claude.ai/share/847edd00-5338-4140-b4f2-e16230e348d7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border bg-background border-border ring-2 ring-border/5 rounded-xl h-10 w-10 flex items-center justify-center hover:scale-105 hover:bg-muted/40 transition-all duration-200"
+                title="Ask Claude"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="size-5 text-foreground">
+                  <circle cx="12" cy="12" r="2" fill="currentColor" />
+                  <path d="M12 2v20M17 5L7 19M19 12H5M17 19L7 5" />
+                </svg>
+              </Link>
+              <Link
+                href="https://gemini.google.com/app/0500dd762cc0c538?hl=en-IN"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border bg-background border-border ring-2 ring-border/5 rounded-xl h-10 w-10 flex items-center justify-center hover:scale-105 hover:bg-muted/40 transition-all duration-200"
+                title="Ask Gemini"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="size-5 text-foreground">
+                  <path d="M12 2a1 1 0 0 1 .928.629l1.92 4.479 4.479 1.92a1 1 0 0 1 0 1.856l-4.479 1.92-1.92 4.479a1 1 0 0 1-1.856 0l-1.92-4.479-4.479-1.92a1 1 0 0 1 0-1.856l4.479-1.92 1.92-4.479A1 1 0 0 1 12 2z" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </BlurFade>
       </section>
+
+      <footer className="mt-20 border-t border-border/40 pt-8 pb-16 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs text-muted-foreground font-mono">
+        <div className="flex flex-col gap-1 text-left">
+          <p>Designed & Developed by Sandeep</p>
+          <p>© 2026 All rights reserved.</p>
+        </div>
+        <div className="flex flex-col gap-1 text-left sm:text-right">
+          <p>Visitors #32</p>
+          <p>
+            Hyderabad, India <FooterClock />
+          </p>
+        </div>
+      </footer>
     </main>
   );
 }

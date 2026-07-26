@@ -7,6 +7,52 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import Markdown from "react-markdown";
+import { ReactLight } from "@/components/ui/svgs/reactLight";
+import { NextjsIconDark } from "@/components/ui/svgs/nextjsIconDark";
+import { Python } from "@/components/ui/svgs/python";
+import { Postgresql } from "@/components/ui/svgs/postgresql";
+
+const TECH_ICONS: Record<string, (props: React.SVGProps<SVGSVGElement>) => React.ReactNode> = {
+  "React.js": (props) => <ReactLight {...props} />,
+  "Next.js": (props) => <NextjsIconDark {...props} />,
+  "Python": (props) => <Python {...props} />,
+  "PostgreSQL": (props) => <Postgresql {...props} />,
+  "Prisma": (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M24 22.5L12 1.5 0 22.5h24zM12 5.5l8.5 15H3.5l8.5-15z" />
+    </svg>
+  ),
+  "Streamlit": (props) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M19.123 20.887a.465.465 0 0 1-.365.176h-13.5c-.144 0-.28-.065-.37-.176a.485.485 0 0 1-.065-.4l3-11a.485.485 0 0 1 .47-.37h1.03v-4.14a.485.485 0 0 1 .47-.47h3.03a.485.485 0 0 1 .47.47v4.14h1.03a.485.485 0 0 1 .47.37l3 11a.485.485 0 0 1-.065.4z" />
+    </svg>
+  ),
+  "LangGraph": (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <circle cx="12" cy="4" r="2.5" fill="currentColor" />
+      <circle cx="5" cy="18" r="2.5" />
+      <circle cx="19" cy="18" r="2.5" />
+      <line x1="12" y1="6.5" x2="6.5" y2="15.5" />
+      <line x1="12" y1="6.5" x2="17.5" y2="15.5" />
+      <line x1="7.5" y1="18" x2="16.5" y2="18" strokeDasharray="2 2" stroke="currentColor" />
+    </svg>
+  ),
+  "DeepAgents": (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z" />
+      <path d="M12 14a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8z" />
+      <circle cx="12" cy="7" r="1.2" fill="currentColor" />
+      <circle cx="9.5" cy="9.5" r="1" fill="currentColor" />
+      <circle cx="14.5" cy="9.5" r="1" fill="currentColor" />
+    </svg>
+  ),
+  "Claude Code": (props) => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z" />
+    </svg>
+  ),
+};
+
 
 function ProjectImage({ src, alt }: { src: string; alt: string }) {
   const [imageError, setImageError] = useState(false);
@@ -126,15 +172,19 @@ export function ProjectCard({
         </div>
         {tags && tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mt-auto">
-            {tags.map((tag) => (
-              <Badge
-                key={tag}
-                className="text-[11px] font-medium border border-border h-6 w-fit px-2"
-                variant="outline"
-              >
-                {tag}
-              </Badge>
-            ))}
+            {tags.map((tag) => {
+              const Icon = TECH_ICONS[tag];
+              return (
+                <Badge
+                  key={tag}
+                  className="flex items-center gap-1 text-[11px] font-medium border border-border h-6 w-fit px-2 select-none"
+                  variant="outline"
+                >
+                  {Icon && <Icon className="size-3.5 fill-current" />}
+                  <span>{tag}</span>
+                </Badge>
+              );
+            })}
           </div>
         )}
       </div>
